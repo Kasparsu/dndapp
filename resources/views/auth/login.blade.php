@@ -6,11 +6,11 @@
         @csrf
 
         <!-- Email Address -->
-        <div>
+        <label class="form-control w-full">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        </label>
 
         <!-- Password -->
         <div class="mt-4">
