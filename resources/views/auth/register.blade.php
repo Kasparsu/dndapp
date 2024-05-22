@@ -1,52 +1,70 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.layout')
+@section('content')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<div class="card mt-36 mx-auto w-96 bg-base-300">
+    <div class="card-body">
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                  <span class="label-text">{{__('Name')}}</span>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                </div>
+                <input type="text" placeholder="{{__('Name')}}" class="input input-bordered w-full max-w-xs" required autofocus autocomplete="name" value="{{old('name')}}" name="name" />
+                <div class="label">
+                    @if($errors->has('name'))
+                        <span class="label-text-alt">{{$errors->get('name')}}</span>
+                    @endif
+                </div>
+              </label>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                  <span class="label-text">{{__('Email')}}</span>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                </div>
+                <input type="email" placeholder="{{__('Email')}}" class="input input-bordered w-full max-w-xs" required autofocus autocomplete="username" value="{{old('email')}}"  name="email"/>
+                <div class="label">
+                    @if($errors->has('email'))
+                        <span class="label-text-alt">{{$errors->get('email')}}</span>
+                    @endif
+                </div>
+              </label>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+              <label class="form-control w-full max-w-xs">
+                <div class="label">
+                  <span class="label-text">{{__('Password')}}</span>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                </div>
+                <input type="password" placeholder="{{__('Password')}}" class="input input-bordered w-full max-w-xs" required autofocus autocomplete="username" value="{{old('email')}}" />
+                <div class="label">
+                    @if($errors->has('password'))
+                        <span class="label-text-alt">{{$errors->get('password')}}</span>
+                    @endif
+                </div>
+              </label>
+              <label class="form-control w-full max-w-xs">
+                <div class="label">
+                  <span class="label-text">{{__('Confirm Password')}}</span>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                </div>
+                <input type="password" placeholder="{{__('Confirm Password')}}" class="input input-bordered w-full max-w-xs" required name="password_confirm" />
+                <div class="label">
+                    @if($errors->has('password_confirmation'))
+                        <span class="label-text-alt">{{$errors->get('password_confirmation')}}</span>
+                    @endif
+                </div>
+              </label>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+
+                <button class="btn btn-primary ms-3">
+                    {{ __('Register') }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
+
